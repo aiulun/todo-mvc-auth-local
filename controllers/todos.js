@@ -4,8 +4,11 @@ module.exports = {
     getTodos: async (req,res)=>{
         console.log(req.user)
         try{
+            // Only get items related to the logged in user based on user.id property
             const todoItems = await Todo.find({userId:req.user.id})
+            // Count the number of items that have the completed property set to false
             const itemsLeft = await Todo.countDocuments({userId:req.user.id,completed: false})
+            // Render the ejs file for HTML to have the items, itemsleft and user's name
             res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user})
         }catch(err){
             console.log(err)

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+// Schema to determine the structure of what's entered into the database
 const TodoSchema = new mongoose.Schema({
   todo: {
     type: String,
